@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="EUC-KR">
+<title>부서등록</title>
+</head>
+<body>
+	<form name="insertForm" th:action="@{/deptInsert}" method="post"
+		th:object="${deptVO}">
+		<div>
+			<label for="departmentId">부서번호</label> 
+			<input type="text" th:field="*{departmentId}">
+		</div>
+		<div>
+			<label for="departmentName">부서이름</label> 
+			<input type="text" th:field="*{departmentName}">
+		</div>
+		<div>
+			<label for="managerId">상사번호</label> 
+			<input type="number" th:field="*{managerId}">
+		</div>
+		<div>
+			<label for="locationId">부서지역번호</label> 
+			<input type="number" th:field="*{locationId}">
+		</div>
+		<div>
+			<button type="submit">등록</button>
+			<button type="button" th:onclick="|location.href='@{/deptList}'|">목록으로</button>
+		</div>
+	</form>
+</body>
+</html>

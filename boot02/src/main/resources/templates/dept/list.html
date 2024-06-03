@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="EUC-KR">
+<title>전체부서조회</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>부서번호</th>
+				<th>부서이름</th>
+				<th>상사번호</th>
+				<th>부서지역번호</th>
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="dept : ${deptList}">
+				<tr th:onclick="|location.href='@{/deptInfo(departmentId=${dept.departmentId})}'|">
+					<td th:text="${dept.departmentId}"></td>
+					<td th:text="${dept.departmentName}"></td>
+					<td th:text="${dept.managerId}"></td>
+					<td th:text="${dept.locationId}"></td>
+				</tr>
+			</th:block>
+		</tbody>
+	</table>
+</body>
+</html>
