@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>사원등록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+	<form name="insertForm"
+		th:action="@{/empInsert}" method="post" th:object="${empVO}">
+		<div>
+			<label for="lastName">이름</label> 
+			<input type="text" th:field="*{lastName}">
+		</div>
+		<div>
+			<label for="email">이메일</label> 
+			<input type="email" th:field="*{email}">
+		</div>
+		<div>
+			<label for="hireDate">입사일</label> 
+			<input type="date" th:field="*{hireDate}"> 
+		</div>
+		<div>
+			<label for="jobId">업무</label> 
+			<input type="text" th:field="*{jobId}">
+		</div>
+		<div>
+			<label for="salary">급여</label> 
+			<input type="number" th:field="*{salary}">
+		</div>
+		<div>
+		<!-- 
+			<button type="button" 
+				th:onclick="|Swal.fire({
+					icon: 'success',
+					title : '성공'
+				}).then((result) => {
+					if(result.isConfirmed){
+						submit();
+					}
+					})|">사원등록하기</button>			
+		 -->
+		 <button type="submit">등록</button>
+		 <button type="button" th:onclick="|location.href='@{/empList}'|">목록으로</button>
+		</div>
+	</form>
+</body>
+</html>

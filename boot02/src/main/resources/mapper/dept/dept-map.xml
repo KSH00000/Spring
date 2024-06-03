@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.dept.mapper.DeptMapper">
+	<!-- emp-map.xml -->
+	
+	<!-- 전체조회 -->
+	<select id="selectDeptAll" resultType="DeptVO">
+		SELECT department_id
+			   , department_name
+			   , manager_id
+			   , location_id
+		FROM departments
+		<!--  dynamic sql -->
+		<where>
+			<if test="departmentId > 0">
+				OR department_id = #{departmentId}
+			</if>
+			<if test="locationId != null and !locationId.equals('')">
+				OR job_id = #{jobId}
+			</if>
+		</where>
+		<!--  WHERE ${keyword} = #{data} -->
+		ORDER BY employee_id
+	</select>
+	<!-- 단건조회 -->
+	<select id="selectDeptInfo" resultType="DeptVO">
+		SELECT department_id
+			   , department_name
+			   , manager_id
+			   , location_id
+		FROM departments
+		WHERE department_id = #{departmentId}
+		<!--  #{} : PreparedStatement => 데이터 타입에 따른 작업
+		 	  ${} : Statement 	      => 데이터 타입 상관하지 않음   
+		 -->
+	</select>
+	
+	<!-- 등록 : slectKey 사용 -->
+	<insert id="insertDeptInfo" parameterType="DeptVO">
+		<selectKey keyProperty="departmentId"
+				   resultType="Integer"
+				   order="BEFORE">
+			SELECT NVL(MAX(department_id), 0) +1
+			FROM departments
+		</selectKey>
+		INSERT INTO departments
+				(
+				department_id
+			   	, department_name
+			   	, manager_id
+		        <if test="locationId > 0">
+			   	, location_id		        	
+		        </if>
+		        )
+		VALUES  (
+				#{departmentId}
+		        , #{departmentName}
+		        , #{managerId}
+		        <!-- 
+		        <choose>
+		        	<when test="managerId != null">
+				        , #{managerId}
+		        	</when>
+		        		, 
+		        	</otherwise>
+		        	 <otherwise>
+		        </choose>
+		         -->
+		        <if test="locationId > 0">
+		        , #{locationId}
+		        </if>
+		        )
+	</insert>	
+	<!-- 등록 : sequence 사용 -->
+	<insert id="insertSeq" parameterType="DeptVO">
+		<selectKey keyProperty="departmentId"
+				   resultType="Integer"
+				   order="AFTER">
+		SELECT departments_seq.CURRVAL
+		FROM dual				  
+		</selectKey>
+		INSERT INTO departments
+				(
+				department_id
+		        , department_name
+		        , manager_id
+		        <if test="locationId > 0">
+		        , location_id
+		        </if>	        	        	
+		        )
+		VALUES  (
+				departments_seq.NEXTVAL
+		        , #{department_id}
+		        , #{department_name}
+		        , #{manager_id}
+		        <!-- 
+		        <choose>
+		        	<when test="hireDate != null">
+		        		, #{hireDate}
+		        	</when>
+		        	<otherwise>
+		        		, sysdate
+		        	</otherwise>
+		        </choose>
+		         -->
+		        <if test="locationId > 0">
+		        , #{location_id}
+		        </if>
+		        )
+	</insert>
+	<!-- 수정 -->
+	<update id="updateDeptInfo">
+		UPDATE departments
+		SET 
+			department_name = #{info.departmentName}
+			
+			<if test="info.locationId > 0">
+			, location_id = #{info.locationId}
+			</if>
+		WHERE department_id = #{did}
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteDeptInfo" parameterType="int">
+		DELETE FROM departments
+		WHERE department_id = #{deptId}
+	</delete>
+</mapper>
