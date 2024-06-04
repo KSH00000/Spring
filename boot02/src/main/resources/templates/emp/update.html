@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{common/layouts/default_layout}"
+	  layout:fragment="Content">
 <head>
 <meta charset="UTF-8">
 <title>사원정보수정</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
+  <div class="container">
 	<h1>사원정보 수정</h1>
-	<h3 th:text="${empInfo.lastName} + '사원님 의 정보'"></h3>
+	<h3 th:text="${empInfo.lastName} + '사원의 정보'"></h3>
 	<form th:object="${empInfo}">
 		<div>
-			<label for="employeeId">사원번호</label> <input type="number"
+			<label for="employeeId">사원번호</label> <input class="form-control" type="number"
 				th:field="*{employeeId}" readonly>
 		</div>
 		<div>
-			<label for="lastName">이름</label> <input type="text"
+			<label for="lastName">이름</label> <input class="form-control" type="text"
 				th:field="*{lastName}">
 		</div>
 		<div>
-			<label for="email">이메일</label> <input type="email"
+			<label for="email">이메일</label> <input class="form-control" type="email"
 				th:field="*{email}">
 		</div>
 		<div>
-			<label for="hireDate">입사일</label> <input type="date"
+			<label for="hireDate">입사일</label> <input class="form-control" type="date"
 				th:field="*{hireDate}">
 		</div>
 		<div>
-			<label for="jobId">업무</label> <input type="text" th:field="*{jobId}">
+			<label for="jobId">업무</label> <input class="form-control" type="text" th:field="*{jobId}">
 		</div>
 		<div>
-			<label for="salary">급여</label> <input type="number"
+			<label for="salary">급여</label> <input class="form-control" type="number"
 				th:field="*{salary}">
 		</div>
 		<div>
@@ -101,5 +102,6 @@
 			return formObj;
 		};
 	</script>
+  </div>
 </body>
 </html>

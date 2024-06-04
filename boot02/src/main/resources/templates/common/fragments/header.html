@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- deault configs -->
+<html xmlns:th="https://www.thymeleaf.org/" th:fragment="headerFragment">
+<meta charset="UTF-8">
+<div class="container">
+	<ul class="nav nav-pills">
+		<li class="nav-item" th:onclick="|location.href='@{/empList}'|"><a
+			class="nav-link" aria-current="page" href="#">전체사원목록</a></li>
+		<li class="nav-item" th:onclick="|location.href='@{/empInsert}'|">
+			<a class="nav-link" href="#">사원등록</a>
+		</li>
+		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+
+	</ul>
+
+</div>
+
+</html>

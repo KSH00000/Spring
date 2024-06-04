@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
 <head>
-<meta charset="EUC-KR">
-<title>ºÎ¼­Á¤º¸Á¶È¸</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+	  rel="stylesheet" 
+	  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+	  crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>ë¶€ì„œì •ë³´ì¡°íšŒ</title>
 </head>
 <body>
-	<h1>ºÎ¼­Á¤º¸ Á¶È¸</h1>
+<div class="container">
+	<h1>ë¶€ì„œì •ë³´ ì¡°íšŒ</h1>
 	<div>
-		<div>
-			<label for="dId">ºÎ¼­¹øÈ£</label> 
-			<input type="text" id="dId"
-				th:value="${deptInfo.departmentId}" readonly>
+		<div class="mb-3">
+			<label for="dId">ë¶€ì„œë²ˆí˜¸</label> 
+			<input class="form-control" type="text" id="dId"
+				th:value="${deptInfo.departmentId}" disabled readonly>
 		</div>
-		<div>
-			<label for="dname">ºÎ¼­ÀÌ¸§</label> 
-			<input type="text" id="dname"
-				th:value="${deptInfo.departmentName}" readonly>
+		<div class="mb-3">
+			<label for="dname">ë¶€ì„œì´ë¦„</label> 
+			<input class="form-control" type="text" id="dname"
+				th:value="${deptInfo.departmentName}" disabled readonly>
 		</div>
-		<div>
-			<label for="mId">»ó»ç¹øÈ£</label> 
-			<input type="number" id="mId"
-				th:value="${deptInfo.managerId}" readonly>
+		<div class="mb-3">
+			<label for="mId">ìƒì‚¬ë²ˆí˜¸</label> 
+			<input class="form-control" type="number" id="mId"
+				th:value="${deptInfo.managerId}" disabled readonly>
 		</div>
-		<div>
-			<label for="locId">ºÎ¼­Áö¿ª¹øÈ£</label> 
-			<input type="number" id="locId"
-				th:value="${deptInfo.locationId}" readonly>
+		<div class="mb-3">
+			<label for="locId">ë¶€ì„œì§€ì—­ë²ˆí˜¸</label> 
+			<input class="form-control" type="number" id="locId"
+				th:value="${deptInfo.locationId}" disabled readonly>
 		</div>
 		<div>
 			<button type="button"
-				th:onclick="|location.href='@{/deptUpdate(departmentId=${deptInfo.departmentId})}'|">¼öÁ¤</button>
-			<button type="button" th:onclick="|location.href='@{/deptList}'|">¸ñ·ÏÀ¸·Î</button>
+				th:onclick="|location.href='@{/deptUpdate(departmentId=${deptInfo.departmentId})}'|">ìˆ˜ì •</button>
+			<button type="button" th:onclick="|location.href='@{/deptList}'|">ëª©ë¡ìœ¼ë¡œ</button>
 			<button type="button"
-				th:onclick="|location.href='@{/deptDelete(departmentId=${deptInfo.departmentId})}'|">»èÁ¦</button>
+				th:onclick="|location.href='@{/deptDelete(departmentId=${deptInfo.departmentId})}'|">ì‚­ì œ</button>
 		</div>
 	</div>
+</div>
 </body>
 </html>

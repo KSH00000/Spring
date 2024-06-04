@@ -48,7 +48,8 @@ public class DeptController {
 
 	// 등록 - 페이지 : GET
 	@GetMapping("deptInsert")
-	public String deptInsertForm() {
+	public String deptInsertForm(Model model) {
+		model.addAttribute("deptVO", new DeptVO());
 		return "dept/insert";
 	}
 
