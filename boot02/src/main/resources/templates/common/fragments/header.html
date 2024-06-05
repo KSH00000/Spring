@@ -4,12 +4,20 @@
 <meta charset="UTF-8">
 <div class="container">
 	<ul class="nav nav-pills">
-		<li class="nav-item" th:onclick="|location.href='@{/empList}'|"><a
-			class="nav-link" aria-current="page" href="#">전체사원목록</a></li>
-		<li class="nav-item" th:onclick="|location.href='@{/empInsert}'|">
-			<a class="nav-link" href="#">사원등록</a>
+		<li class="nav-item" th:onclick="|location.href='@{/empList}'|">
+			<a class="nav-link" aria-current="page" href="#">사원목록</a></li>
+		<li class="nav-item" th:onclick="|location.href='@{/deptList}'|">
+			<a class="nav-link" href="#">부서목록</a>
 		</li>
-		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+		<li class="nav-item" th:onclick="|location.href='@{/all}'|">
+			<a class="nav-link" href="#">메인페이지</a>
+		</li>
+		<!-- 
+		 <li class="nav-item" th:onclick="|location.href='@{/login}'|">
+			<a class="nav-link" href="#">로그인</a>
+		</li>
+		 -->
+		
 
 	</ul>
 
